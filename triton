@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+exec docker run --rm -t -i --user "$(id -u)" --volume "$HOME/.triton:/home/node/.triton" --volume "$HOME/.ssh:/home/node/.ssh:ro" mookas/triton-cli "$@"
