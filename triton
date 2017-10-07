@@ -1,2 +1,14 @@
 #!/usr/bin/env bash
-exec docker run --rm -i --user "$(id -u)" --volume "$HOME/.triton:/home/node/.triton" --volume "$HOME/.ssh:/home/node/.ssh:ro" --entrypoint "/usr/local/bin/$(basename "$0")" mookas/triton-cli "$@"
+exec \
+	docker run \
+	--rm \
+	--interactive \
+	--user "$(id -u)" \
+	--volume "$HOME/.triton:/home/node/.triton" \
+	--volume "$HOME/.ssh:/home/node/.ssh:ro" \
+	--entrypoint "/usr/local/bin/$(basename "$0")" \
+	--env SDC_URL \
+	--env SDC_ACCOUNT \
+	--env SDC_USER \
+	--env SDC_KEY_ID \
+	mookas/triton-cli "$@"
